@@ -1,0 +1,1 @@
+web:gunicorn hideliveryapp.wsgi
