@@ -1,1 +1,1 @@
-web:gunicorn hideliveryapp.wsgi
+web: gunicorn hideliveryapp.wsgi
