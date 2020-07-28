@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from delivery.models import Order
+from delivery.models import Order,Store
 
 class NewOrderAdmin(admin.ModelAdmin):
     list_display=('adder','orderfee','driver','deliverfee')
@@ -15,6 +15,9 @@ class NewOrderAdmin(admin.ModelAdmin):
     def has_delete_permission(self, request, obj=None):
         return False
 
-
+class StoreAdmin(admin.ModelAdmin):
+    list_display=('adder','logo','user')
 
 admin.site.register(Order,NewOrderAdmin)
+admin.site.register(Store,StoreAdmin)
+

@@ -24,6 +24,7 @@ class Store(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     adder=models.CharField(max_length=1000,default='',verbose_name="عنوان العميل ")
     name=models.CharField(max_length=500)
+    logo =models.ImageField(upload_to = 'stores_logos/',verbose_name="شعار المتجر ")
     def __str__(self):
         return self.user.username
 

@@ -11,6 +11,8 @@ class StoreSignUpForm(UserCreationForm):
     adder = forms.CharField(label='عنوان المتجر بالكامل')
     name = forms.CharField(label='اسم المتجر')
     phone = forms.CharField(label='رقم الجوال')
+    logo = forms.ImageField(label='شعار المتجر')
+
     password1 = forms.CharField(
         label=("كلمة السر"),
         strip=False,
@@ -37,6 +39,7 @@ class StoreSignUpForm(UserCreationForm):
         store = Store.objects.create(user=user)
         store.adder = self.cleaned_data['adder']
         store.name = self.cleaned_data['name']
+        store.logo=self.cleaned_data['logo']
         store.save()
         return user
 
