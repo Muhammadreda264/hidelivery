@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+
+  <!-- Card body -->
+  <div class="card-body">
+      <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">اسم العميل</th>
+      <th scope="col">حالة الطلبية</th>
+      <th scope="col">بيانات السائق</th>
+        <th scope="col">تعديل الطلبية</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for order in order_list %}
+    <tr>
+        <td>{{ order.customername }}</td>
+        <td>{{ order.get_status_display}}</td>
+        <td>{{ order.get_status_display}}</td>
+
+            <td>
+                <a href="{% url 'editorder' order.id  %}">
+                <button type="button"  class="btn btn-outline-secondary">تعديل</button>
+            </a>
+            </td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+        </div>
+  <!-- Card body -->
+
+</div>
+{% endblock %}
+

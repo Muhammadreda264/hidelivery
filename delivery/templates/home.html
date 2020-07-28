@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>اهلا بك,  <small>{{ user.username }}</small>!</h2>
+  <p>اسم متجرك هو: {{ user.store.adder }}</p>
+{% endblock %}
