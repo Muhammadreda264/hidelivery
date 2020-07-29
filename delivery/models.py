@@ -22,18 +22,25 @@ class User(AbstractUser):
 
 class Store(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    adder=models.CharField(max_length=1000,default='',verbose_name="عنوان العميل ")
-    name=models.CharField(max_length=500)
-    logo =models.ImageField(upload_to = 'stores_logos/',verbose_name="شعار المتجر ")
+    adder=models.CharField(max_length=1000,default='',verbose_name="عنوان المتجر ")
+    name=models.CharField(max_length=500,verbose_name="اسم المتجر ")
     def __str__(self):
         return self.user.username
+
+    class Meta:
+        verbose_name_plural = "متاجر"
+        verbose_name='متجر'
 
 class Driver(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     city=models.CharField(max_length=1000,default='')
     name=models.CharField(max_length=500)
     def __str__(self):
-        return self.user.username
+        return f" {self.name}, {self.city}."
+    class Meta:
+        verbose_name_plural = "سائقين"
+        verbose_name='سائق'
+
 
 class Order(models.Model):
 

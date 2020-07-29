@@ -1,6 +1,213 @@
-{% extends "base.html" %}
+<html lang="en"><!-- Mirrored from layerdrops.com/zimed/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 17 Mar 2020 10:29:15 GMT --><!-- Added by HTTrack --><head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
 
-{% block content %}
-  <h2>اهلا بك,  <small>{{ user.username }}</small>!</h2>
-  <p>اسم متجرك هو: {{ user.store.adder }}</p>
-{% endblock %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hi driver</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://gcem.sa/resources/assets/site/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://gcem.sa/resources/assets/site/images/color.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://gcem.sa/resources/assets/site/images/color.png">
+    <link rel="manifest" href="https://gcem.sa/resources/assets/site/images/color.png">
+
+    <!-- plugin scripts -->
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/bootstrap-rtl.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/owl.theme.default.min.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/zimed-icon.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/jquery.bxslider.min.css">
+    <link rel="stylesheet" type="text/css" href="https://gcem.sa/resources/assets/site/css/magnific-popup.css">
+    <!-- template styles -->
+    <link rel="stylesheet" href="https://gcem.sa/resources/assets/site/css/style.css">
+    <link rel="stylesheet" href="https://gcem.sa/resources/assets/site/css/responsive.css">
+
+</head>
+
+<body data-gr-c-s-loaded="true">
+    <div class="preloader" style="display: none;">
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    </div><!-- /.preloader -->
+    <div class="page-wrapper">
+
+        <header class="main-nav__header-one ">
+    <nav class="header-navigation stricky page-nav original">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="main-nav__logo-box">
+                <a href="https://gcem.sa" class="main-nav__logo">
+                    <img src="https://gcem.sa/resources/assets/site/images/white.png" width="105" alt="Hi driver">
+                </a>
+                <a href="#" class="side-menu__toggler"><i class="fa fa-bars"></i>
+                    <!-- /.smpl-icon-menu --></a>
+            </div><!-- /.logo-box -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="main-nav__main-navigation">
+                <ul class="one-page-scroll-menu main-nav__navigation-box">
+                    <li class="current">
+                        <a href="{% url 'home' %}">الرئيسية</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'storesignup' %}">تسجيل حساب كمتجر </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'driversignup' %}">تسجيل حساب سائق</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'login' %}" >تسجيل دخول </a>
+                    </li>
+
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav><nav class="header-navigation stricky page-nav stricked-menu">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="main-nav__logo-box">
+                <a href="https://gcem.sa" class="main-nav__logo">
+                    <img src="https://gcem.sa/resources/assets/site/images/white.png" width="105" alt="Hi driver">
+                </a>
+                <a href="#" class="side-menu__toggler"><i class="fa fa-bars"></i>
+                    <!-- /.smpl-icon-menu --></a>
+            </div><!-- /.logo-box -->
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="main-nav__main-navigation">
+                <ul class="one-page-scroll-menu main-nav__navigation-box">
+                    <li>
+                    <li>
+                        <a href="{% url 'home' %}">الرئيسية</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'storesignup' %}">تسجيل حساب كمتجر </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'driversignup' %}">تسجيل حساب سائق</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'login' %}" >تسجيل دخول </a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+</header><!-- /.main-nav__header-one -->
+
+<section class="terms">
+    <img src="https://gcem.sa/resources/assets/site/images/shapes/cta-1-shape-2.png" alt="" class="cta-three__shape-2">
+    <img src="https://gcem.sa/resources/assets/site/images/shapes/cta-1-shape-1.png" alt="" class="cta-three__shape-1">
+    <img src="https://gcem.sa/resources/assets/site/images/shapes/contact-shape-1.png" alt="" class="contact-one__shape-1 diff">
+    <div class="container">
+        <div class="main-title">
+            <h4>شركاء النجاح</h4>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+        <!--end terms-->
+
+        <section class="cta-one">
+            <div class="container">
+                <div class="cta-one__circle-1"></div><!-- /.cta-one__circle-1 -->
+                <div class="cta-one__circle-2"></div><!-- /.cta-one__circle-2 -->
+                <div class="cta-one__circle-3"></div><!-- /.cta-one__circle-3 -->
+            </div><!-- /.container -->
+        </section><!-- /.cta-one -->
+
+
+        <footer class="site-footer">
+    <img src="assets/images/shapes/footer-shape-3.png" class="site-footer__shape-3" alt="">
+    <div class="site-footer__bottom">
+        <div class="container">
+            <div class="inner-container">
+
+                <p> جميع الحقوق محفوظة © لموقع مرحبا لخدمات الاعمال</p>
+            </div><!-- /.inner-container -->
+        </div><!-- /.container -->
+    </div><!-- /.site-footer__bottom -->
+</footer><!-- /.site-footer -->
+
+    </div><!-- /.page-wrapper -->
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top" style="display: none;"><i class="fa fa-angle-up"></i></a>
+
+
+
+    <div class="side-menu__block">
+
+
+        <div class="side-menu__block-overlay custom-cursor__overlay">
+            <div class="cursor" style="top: 420px; left: 1616px;"></div>
+            <div class="cursor-follower" style="top: 398px; left: 1594px;"></div>
+        </div><!-- /.side-menu__block-overlay -->
+        <div class="side-menu__block-inner  mCustomScrollbar _mCS_1 mCS-dir-rtl mCS_no_scrollbar"><div id="mCSB_1" class="mCustomScrollBox mCS-dark mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0"><div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="rtl">
+            <div class="side-menu__top justify-content-end">
+
+                <a href="#" class="side-menu__toggler side-menu__close-btn"><img src="https://gcem.sa/resources/assets/site/images/shapes/close-1-1.png" alt="" class="mCS_img_loaded"></a>
+            </div><!-- /.side-menu__top -->
+
+
+            <nav class="mobile-nav__container">
+                <!-- content is loading via js -->
+
+                <ul class="one-page-scroll-menu main-nav__navigation-box">
+                    <li>
+                        <a href="{% url 'home' %}">الرئيسية</a>
+                    </li>
+                    <li class="">
+                        <a href="{% url 'storesignup' %}">تسجيل حساب كمتجر </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'driversignup' %}">تسجيل حساب سائق</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'login' %}" >تسجيل دخول </a>
+                    </li>
+
+                </ul>
+            </nav>
+            <div class="side-menu__sep"></div><!-- /.side-menu__sep -->
+        </div><div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-dark mCSB_scrollTools_vertical" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 0px; top: 0px;"><div class="mCSB_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSB_draggerRail"></div></div></div></div></div><!-- /.side-menu__block-inner -->
+    </div><!-- /.side-menu__block -->
+
+
+    <script src="https://gcem.sa/resources/assets/site/js/jquery.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/bootstrap.bundle.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/TweenMax.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/jquery.easing.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/bootstrap-select.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/jquery.validate.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/waypoints.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/wow.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/jquery.counterup.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/owl.carousel.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/jquery.bxslider.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/jquery.magnific-popup.min.js"></script>
+    <script src="https://gcem.sa/resources/assets/site/js/jquery.ajaxchimp.min.js"></script>
+    <!-- template scripts -->
+    <script src="https://gcem.sa/resources/assets/site/js/theme.js"></script>
+
+
+
+
+</body></html>
