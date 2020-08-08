@@ -26,7 +26,7 @@ class StoreSignUpView(CreateView):
 class DriverSignUpView(CreateView):
     model = User
     form_class = DriverSignUpForm
-    template_name = 'storesignup.html'
+    template_name = 'driver_sign_up.html'
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'driver'
         return super().get_context_data(**kwargs)
