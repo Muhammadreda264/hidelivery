@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, DetailView, UpdateView, ListView
-from delivery.decorators import store_required
+from delivery.decorators import store_required, driver_required
 from delivery.forms import StoreSignUpForm, DriverSignUpForm
 from delivery.models import User, Order
 
@@ -38,6 +38,11 @@ class DriverSignUpView(CreateView):
 
 
 def home(request):
+    if request.user.is_authenticated:
+            if request.user.is_store:
+                return redirect('myorders')
+            else:
+                return redirect('driverhome')
     return render(request, 'home.html')
 
 
@@ -88,3 +93,12 @@ class OrderUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('home')
+
+@method_decorator([login_required, driver_required], name='dispatch')
+class DriverOrderListView(ListView):
+    model = Order
+    template_name = 'driverorders.html'
+
+    def get_queryset(self):
+        compeltedstatus = ['deleted', '']
+        return Order.objects.filter(driver=self.request.user.driver).exclude(status__in=compeltedstatus)
