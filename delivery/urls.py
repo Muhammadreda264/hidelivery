@@ -13,6 +13,7 @@ urlpatterns = [
     path('store/home', OrderListView.as_view(), name='storehome'),
     path('',views.home,name='home'),
     path('driver/home',DriverOrderListView.as_view(),name='driverhome'),
-    
+    path('updateorderstatus/<int:pk>/', views.updateOrderStatus, name='updateorderstatus'),
+
 
 ]
