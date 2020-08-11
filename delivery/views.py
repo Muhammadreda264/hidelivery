@@ -40,7 +40,7 @@ class DriverSignUpView(CreateView):
 def home(request):
     if request.user.is_authenticated:
             if request.user.is_store:
-                return redirect('myorders')
+                return redirect('storehome')
             else:
                 return redirect('driverhome')
     return render(request, 'home.html')
@@ -76,7 +76,8 @@ class OrderListView(ListView):
     template_name = 'my_orders.html'
 
     def get_queryset(self):
-        return Order.objects.filter(store=self.request.user.store)
+        compeltedstatus = ['DE', 'CA']
+        return Order.objects.filter(store=self.request.user.store).exclude(status__in=compeltedstatus)
 
 
 @method_decorator([login_required, store_required], name='dispatch')
@@ -87,8 +88,9 @@ class OrderUpdateView(UpdateView):
     template_name = 'updateorder.html'
 
     def get_queryset(self):
+        compeltedstatus = ['NE', 'PN']
         s = self.request.user.store
-        orders = Order.objects.filter(store=s)
+        orders = Order.objects.filter(store=s).filter(status__in=compeltedstatus)
         return orders
 
     def get_success_url(self):
@@ -100,5 +102,18 @@ class DriverOrderListView(ListView):
     template_name = 'driverorders.html'
 
     def get_queryset(self):
-        compeltedstatus = ['deleted', '']
+        compeltedstatus = ['DE', 'CA']
         return Order.objects.filter(driver=self.request.user.driver).exclude(status__in=compeltedstatus)
+
+@login_required
+@driver_required
+def updateOrderStatus(request,pk):
+    order =Order.objects.filter(pk=pk).first()
+    if order.driver and  order.driver  == request.user.driver:
+        if order.status == 'SH':
+            order.status = 'DE'
+        if order.status =='PN':
+         order.status='SH'
+
+        order.save()
+    return redirect('home')
