@@ -1,56 +1,140 @@
+<html dir="rtl" lang="ar">
+
+<head>
+<style>
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: right;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+</head>
 {% extends "base.html" %}
 
 {% block content %}
-{% include "navbar.html" %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">هاي دليفري </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="{% url 'home'  %}">سجل الطلبيات <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="{% url 'logout' %}">تسجيل الخروج</a>
+    </div>
+  </div>
+</nav>
 <div class="card">
-    {% for order in order_list %}
-    <div class="card">
-    <div class="card-header" id="headingOne">
-      <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          {{ order }}
-        </button>
-      </h5>
-    </div>
-
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-          <div class="container">
-  <div class="row">
-    <div class="col-sm">
-     {{ order.store.name }}:اسم المتجر
-        
-    </div>
-    <div class="col-sm">
-      {{ order.store.adder }}:عنوان المتجر
+          {% if order_list %}
+
+    {% for order in order_list %}
+          <button class="collapsible">{{ order.store.name}}</button>
+<div class="content">
+          <div class="card">
+      <div class="card-body">
+
+        <table style="width:100%">
+  <tr>
+    <th>اسم المتجر:</th>
+    <td>{{order.store.name}}</td>
+  </tr>
+  <tr>
+    <th>عنوان المتجر:</th>
+    <td>{{order.store.adder}}</td>
+  </tr>
+  <tr>
+    <th>هاتف المتجر:</th>
+    <td>{{order.store.user.phone}}</td>
+  </tr>
+             <tr>
+    <th>اسم العميل:</th>
+    <td>{{order.customername}}</td>
+  </tr>
+  <tr>
+    <th>عنوان العميل:</th>
+    <td>{{order.adder}}</td>
+  </tr>
+  <tr>
+    <th>هاتف العميل:</th>
+    <td>{{order.phone}}</td>
+  </tr>
+            <th>وصف الطلبية:</th>
+    <td>{{order.desc}}</td>
+  </tr>
+  <tr>
+    <th>رسوم التوصيل:</th>
+    <td>{{order.deliverfee}}</td>
+  </tr>
+  <tr>
+    <th>سعر الطلبية:</th>
+    <td>{{order.orderfee}}</td>
+  </tr>
+            <tr>
+    <th>حالة الطلبية:</th>
+    <td>{{order.get_status_display}}</td>
+  </tr>
+</table>
 
 
+<a href="{% url 'updateorderstatus' order.id  %}">
+                <button type="button"  class="btn btn-outline-secondary">تحديث الحالة </button>
+            </a>
     </div>
-    <div class="col-sm">
-     {{ order.store.user.phone }}: رقم جوال المتجر
-        
+
     </div>
-  </div>
 </div>
-           <div class="container">
-  <div class="row">
-    <div class="col-sm">
-     {{ order.customername }}:اسم العميل
-    </div>
-    <div class="col-sm">
-      عنوان العميل:{{ order.adder }}
-    </div>
-    <div class="col-sm">
-      رقم جوال العميل :{{ order.phone }}
-    </div>
-  </div>
-</div>
 
 
-      </div>
-    </div>
-  </div>
+
     {% endfor %}
+          {% else %}
+          ﻷ يوجد طلبيات في الوقت الحالي يمكنك تحديث الصفحة للمتابعة بعد قليل .
+{% endif %}
+
 
     </div>
+      </div>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>
 {% endblock %}
