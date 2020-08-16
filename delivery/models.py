@@ -53,7 +53,7 @@ class Order(models.Model):
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, blank=True, null=True)
     desc = models.TextField(default="", verbose_name="وصف الطلبية")
     customername = models.CharField(max_length=300, default='', verbose_name="اسم العميل")
-    deliverfee = models.IntegerField(default=0)
+    deliverfee = models.IntegerField(default=0,verbose_name="مصاريف الشحن")
     orderfee = models.IntegerField(default=0, verbose_name="سعر الطلبية", help_text='اتركه فارغ لو كانت الطلبية مدفوعة')
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     phone = models.CharField(max_length=30, verbose_name="رقم جوال العميل")

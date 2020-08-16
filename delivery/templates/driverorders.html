@@ -90,8 +90,8 @@ th, td {
     <td>{{order.desc}}</td>
   </tr>
   <tr>
-    <th>رسوم التوصيل:</th>
-    <td>{{order.deliverfee}}</td>
+    <th>السعر شامل رسوم التوصيل :</th>
+    <td>{{order.deliverfee|add:order.orderfee}}</td>
   </tr>
   <tr>
     <th>سعر الطلبية:</th>

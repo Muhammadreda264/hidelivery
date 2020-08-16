@@ -17,7 +17,6 @@
       <th scope="col">اسم العميل</th>
       <th scope="col">حالة الطلبية</th>
       <th scope="col">اسم السائق</th>
-        <th scope="col">رقم جوال السائق</th>
         <th scope="col">تعديل الطلبية</th>
     </tr>
   </thead>
@@ -28,7 +27,6 @@
         <td>{{ order.get_status_display}}</td>
         {% if order.driver %}
       <td>{{ order.driver.name }}</td>
-              <td>{{ order.driver.user.phone }}</td>
 
   {% else %}
     <td>لم يتم تعين سائق بعد</td>

@@ -6,7 +6,7 @@ from delivery.models import Order,Store,Driver
 class NewOrderAdmin(admin.ModelAdmin):
     list_display=('adder','orderfee','driver','deliverfee')
     readonly_fields=['store','desc','orderfee','adder','customername','phone']
-    list_filter = ['store','status']
+    list_filter = ['store','status','driver']
 
 
 
