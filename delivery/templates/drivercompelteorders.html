@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="container" style="margin-top: 25px;">
+<h2>الطلبيات المكتملة</h2>
+
+      {% if order_list %}
+  <div class="table-responsive">
+
+      <table class="table table-bordered ">
+  <thead>
+    <tr>
+      <th scope="col">اسم المتجر</th>
+      <th scope="col">اسم العميل</th>
+        <th scope="col">رسوم التوصيل</th>
+        <th scope="col">تاريخ التوصيل</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for order in order_list %}
+    <tr>
+        <td>{{ order.store.name }}</td>
+        {% if order.driver %}
+      <td>{{ order.customername }}</td>
+                      <td>{{ order.deliverfee }}</td>
+
+              <td>{{ order.delivered_at }}</td>
+
+  {% else %}
+    <td>لم يتم تعين سائق بعد</td>
+            <td>لم يتم تعين سائق بعد</td>
+
+  {% endif %}
+
+
+
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+      {% else %}
+      <p>ﻷ يوجد طلبيات مكتملة في الوقت الحالي . </p>
+
+      {% endif %}
+
+
+    </div>
+        </div>
+
+
+
+{% endblock %}
+
