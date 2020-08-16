@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 {% include "navbar.html" %}
 
 
-<div class="card">
+<div class="container" style="margin-top: 25px;">
 
-  <!-- Card body -->
-  <div class="card-body">
+
       {% if order_list %}
+  <div class="table-responsive">
 
-      <table class="table table-bordered">
+      <table class="table table-bordered ">
   <thead>
     <tr>
       <th scope="col">اسم العميل</th>
@@ -48,15 +49,19 @@
 </table>
       {% else %}
       <p>ﻷ يوجد طلبيات نشطة في الوقت الحالي . </p>
+      <p></p>
 
-                     <p><a  href="{% url 'neworder' %}">.يمكنك عمل طلبية جديدة</a></p>
 
-                               <p><a  href="{% url 'completedorders' %}">أو مراجعة سجل الطلبيات المكتملة.</a></p>
+      <p><a  href="{% url 'neworder' %}">.يمكنك عمل طلبية جديدة</a></p>
+      <p></p>
+
+      <p><a  href="{% url 'completedorders' %}">أو مراجعة سجل الطلبيات المكتملة.</a></p>
       {% endif %}
 
+
+    </div>
         </div>
-  <!-- Card body -->
 
-</div>
+
+
 {% endblock %}
-
