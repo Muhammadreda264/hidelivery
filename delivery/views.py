@@ -1,10 +1,15 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
 from django.utils.decorators import method_decorator
+from django.views import View
 from django.views.generic import CreateView, DetailView, UpdateView, ListView
+from xhtml2pdf import pisa
+from io import BytesIO
+from django.template.loader import get_template
 from delivery.decorators import store_required, driver_required
 from delivery.forms import StoreSignUpForm, DriverSignUpForm
 from delivery.models import User, Order
@@ -14,6 +19,7 @@ class StoreSignUpView(CreateView):
     model = User
     form_class = StoreSignUpForm
     template_name = 'storesignup.html'
+
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'store'
         return super().get_context_data(**kwargs)
@@ -23,10 +29,12 @@ class StoreSignUpView(CreateView):
         login(self.request, user)
         return redirect('home')
 
+
 class DriverSignUpView(CreateView):
     model = User
     form_class = DriverSignUpForm
     template_name = 'driver_sign_up.html'
+
     def get_context_data(self, **kwargs):
         kwargs['user_type'] = 'driver'
         return super().get_context_data(**kwargs)
@@ -39,10 +47,10 @@ class DriverSignUpView(CreateView):
 
 def home(request):
     if request.user.is_authenticated:
-            if request.user.is_store:
-                return redirect('storehome')
-            else:
-                return redirect('driverhome')
+        if request.user.is_store:
+            return redirect('storehome')
+        else:
+            return redirect('driverhome')
     return render(request, 'home.html')
 
 
@@ -58,9 +66,8 @@ class OrderDetailView(DetailView):
 @method_decorator([login_required, store_required], name='dispatch')
 class OrderCreateView(CreateView):
     model = Order
-    fields = ['customername','desc', 'orderfee', 'phone', 'adder']
+    fields = ['customername', 'desc', 'orderfee', 'phone', 'adder']
     template_name = 'neworder.html'
-
 
     def form_valid(self, form):
         order = form.save(commit=False)
@@ -79,13 +86,22 @@ class OrderListView(ListView):
         compeltedstatus = ['DE', 'CA']
         return Order.objects.filter(store=self.request.user.store).exclude(status__in=compeltedstatus)
 
+
 @method_decorator([login_required, store_required], name='dispatch')
 class CompeltedOrderListView(ListView):
     model = Order
     template_name = 'compelteorders.html'
 
     def get_queryset(self):
-        return Order.objects.filter(store=self.request.user.store,status='CA')
+        return Order.objects.filter(store=self.request.user.store).filter(status='DE')
+
+@method_decorator([login_required, driver_required], name='dispatch')
+class DriverCompeltedOrderListView(ListView):
+    model = Order
+    template_name = 'drivercompelteorders.html'
+
+    def get_queryset(self):
+        return Order.objects.filter(driver=self.request.user.driver).filter(status='DE')
 
 @method_decorator([login_required, store_required], name='dispatch')
 class OrderUpdateView(UpdateView):
@@ -103,6 +119,7 @@ class OrderUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('home')
 
+
 @method_decorator([login_required, driver_required], name='dispatch')
 class DriverOrderListView(ListView):
     model = Order
@@ -112,15 +129,47 @@ class DriverOrderListView(ListView):
         compeltedstatus = ['DE', 'CA']
         return Order.objects.filter(driver=self.request.user.driver).exclude(status__in=compeltedstatus)
 
+
 @login_required
 @driver_required
-def updateOrderStatus(request,pk):
-    order =Order.objects.filter(pk=pk).first()
-    if order.driver and  order.driver  == request.user.driver:
+def updateOrderStatus(request, pk):
+    order = Order.objects.filter(pk=pk).first()
+    if order.driver and order.driver == request.user.driver:
         if order.status == 'SH':
             order.status = 'DE'
-        if order.status =='PN':
-         order.status='SH'
+        if order.status == 'PN':
+            order.status = 'SH'
 
         order.save()
     return redirect('home')
+
+
+def render_to_pdf(template_src, context_dict={}):
+    template = get_template(template_src)
+    html = template.render(context_dict)
+    result = BytesIO()
+    pdf = pisa.pisaDocument(BytesIO(html.encode("ISO-8859-1")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return None
+
+
+data = {
+    "company": "Dennnis Ivanov Company",
+    "address": "123 Street name",
+    "city": "Vancouver",
+    "state": "WA",
+    "zipcode": "98663",
+
+    "phone": "555-555-2345",
+    "email": "youremail@dennisivy.com",
+    "website": "dennisivy.com",
+}
+
+
+# Opens up page as PDF
+class ViewPDF(View):
+
+    def get(self, request, *args, **kwargs):
+        pdf = render_to_pdf('pdf_template.html', data)
+        return HttpResponse(pdf, content_type='application/pdf')
