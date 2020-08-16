@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include "navbar.html" %}
+
+
+<div class="card">
+
+  <!-- Card body -->
+  <div class="card-body">
+      <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">اسم العميل</th>
+      <th scope="col">حالة الطلبية</th>
+      <th scope="col">اسم السائق</th>
+        <th scope="col">رقم جوال السائق</th>
+        <th scope="col">تعديل الطلبية</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for order in order_list %}
+    <tr>
+        <td>{{ order.customername }}</td>
+        <td>{{ order.get_status_display}}</td>
+        {% if order.driver %}
+      <td>{{ order.driver.name }}</td>
+              <td>{{ order.driver.user.phone }}</td>
+
+  {% else %}
+    <td>لم يتم تعين سائق بعد</td>
+            <td>لم يتم تعين سائق بعد</td>
+
+  {% endif %}
+
+
+            <td>
+                <a href="{% url 'editorder' order.id  %}">
+                <button type="button"  class="btn btn-outline-secondary">تعديل</button>
+            </a>
+            </td>
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+        </div>
+  <!-- Card body -->
+
+</div>
+{% endblock %}
+
