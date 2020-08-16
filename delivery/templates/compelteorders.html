@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 {% include "navbar.html" %}
 
 
-<div class="card">
+<div class="container" style="margin-top: 25px;">
+<h2>الطلبيات المكتملة</h2>
 
-  <!-- Card body -->
-  <div class="card-body">
-      <table class="table table-bordered">
+      {% if order_list %}
+  <div class="table-responsive">
+
+      <table class="table table-bordered ">
   <thead>
     <tr>
       <th scope="col">اسم العميل</th>
-      <th scope="col">حالة الطلبية</th>
       <th scope="col">اسم السائق</th>
         <th scope="col">رقم جوال السائق</th>
-        <th scope="col">تعديل الطلبية</th>
     </tr>
   </thead>
   <tbody>
   {% for order in order_list %}
     <tr>
         <td>{{ order.customername }}</td>
-        <td>{{ order.get_status_display}}</td>
         {% if order.driver %}
       <td>{{ order.driver.name }}</td>
               <td>{{ order.driver.user.phone }}</td>
@@ -34,19 +34,28 @@
   {% endif %}
 
 
-            <td>
-                <a href="{% url 'editorder' order.id  %}">
-                <button type="button"  class="btn btn-outline-secondary">تعديل</button>
-            </a>
-            </td>
+
 
     </tr>
   {% endfor %}
   </tbody>
 </table>
-        </div>
-  <!-- Card body -->
+      {% else %}
+      <p>ﻷ يوجد طلبيات مكتملة في الوقت الحالي . </p>
+      <p></p>
 
-</div>
+
+      <p><a  href="{% url 'neworder' %}">.يمكنك عمل طلبية جديدة.</a></p>
+      <p></p>
+
+      <p><a  href="{% url 'home' %}">أو مراجعة سجل الطلبيات النشطة.</a></p>
+      {% endif %}
+
+
+    </div>
+        </div>
+
+
+
 {% endblock %}
 
