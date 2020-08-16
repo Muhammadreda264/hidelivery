@@ -8,6 +8,8 @@
 
   <!-- Card body -->
   <div class="card-body">
+      {% if order_list %}
+
       <table class="table table-bordered">
   <thead>
     <tr>
@@ -44,6 +46,13 @@
   {% endfor %}
   </tbody>
 </table>
+      {% else %}
+      <p>ﻷ يوجد طلبيات نشطة في الوقت الحالي . </p>
+
+                     <p><a  href="{% url 'neworder' %}">.يمكنك عمل طلبية جديدة</a></p>
+
+                               <p><a  href="{% url 'completedorders' %}">أو مراجعة سجل الطلبيات المكتملة.</a></p>
+
         </div>
   <!-- Card body -->
 
