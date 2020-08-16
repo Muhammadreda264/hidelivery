@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
+from datetime import date
 
 
 class User(AbstractUser):
@@ -10,10 +11,10 @@ class User(AbstractUser):
         verbose_name='اسم المستخدم',
         max_length=150,
         unique=True,
-        help_text=('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
+        help_text=('يتطلب 150 حرف أو أقل .يمكن أن يحتوي أحرف أو ارقام أو @/./+/-/_ فقط.'),
         validators=[username_validator],
         error_messages={
-            'unique': ("A user with that username already exists."),
+            'unique': ("اسم المستخدم موجود بالفعل"),
         },
     )
     is_store = models.BooleanField(default=False)
@@ -57,6 +58,8 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     phone = models.CharField(max_length=30, verbose_name="رقم جوال العميل")
     adder = models.CharField(max_length=1000, default='', verbose_name="عنوان العميل ")
+    delivered_at = models.DateTimeField(null=True, blank=True)
+
 
     class Status(models.TextChoices):
         NEW = 'NE', 'جديدة لم يعين سائق'
@@ -74,6 +77,8 @@ class Order(models.Model):
     def save(self, *args, **kwargs):
         if self.driver and self.status == 'NE':
             self.status = 'PN'
+        if not self.delivered_at and self.status == 'DE':
+            self.delivered_at=date.today()
         super().save(*args, **kwargs)
 
     def __str__(self):
