@@ -45,7 +45,8 @@ th, td {
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="{% url 'home'  %}">سجل الطلبيات <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="{% url 'home'  %}">الطلبيات النشطة<span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link" href="{% url 'drivercompletedorders' %}">الطلبيات المكتملة</a>
       <a class="nav-item nav-link" href="{% url 'logout' %}">تسجيل الخروج</a>
     </div>
   </div>
