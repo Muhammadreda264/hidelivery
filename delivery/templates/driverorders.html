@@ -83,7 +83,9 @@ th, td {
   </tr>
   <tr>
     <th>هاتف العميل:</th>
-    <td>{{order.phone}}</td>
+    <td>{{order.phone}}
+        <a href="tel:{{order.phone}}">اتصال</a>
+    </td>
   </tr>
             <th>وصف الطلبية:</th>
     <td>{{order.desc}}</td>
