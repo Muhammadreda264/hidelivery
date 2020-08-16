@@ -70,10 +70,7 @@ th, td {
     <th>عنوان المتجر:</th>
     <td>{{order.store.adder}}</td>
   </tr>
-  <tr>
-    <th>هاتف المتجر:</th>
-    <td>{{order.store.user.phone}}</td>
-  </tr>
+
              <tr>
     <th>اسم العميل:</th>
     <td>{{order.customername}}</td>
@@ -86,6 +83,7 @@ th, td {
     <th>هاتف العميل:</th>
     <td>{{order.phone}}
         <a href="tel:{{order.phone}}">اتصال</a>
+        <a href="https://wa.me/{{order.phone}}">واتساب</a>
     </td>
   </tr>
             <th>وصف الطلبية:</th>
