@@ -79,6 +79,13 @@ class OrderListView(ListView):
         compeltedstatus = ['DE', 'CA']
         return Order.objects.filter(store=self.request.user.store).exclude(status__in=compeltedstatus)
 
+@method_decorator([login_required, store_required], name='dispatch')
+class CompeltedOrderListView(ListView):
+    model = Order
+    template_name = 'compelteorders.html'
+
+    def get_queryset(self):
+        return Order.objects.filter(store=self.request.user.store,status='CA')
 
 @method_decorator([login_required, store_required], name='dispatch')
 class OrderUpdateView(UpdateView):
