@@ -86,6 +86,11 @@ a {
   </div>
 </nav>
 
+{% for key,value in form.errors.items %}
+    {% for error in value %}
+     <li>{{ error }}</li>
+    {% endfor %}
+   {% endfor %}
 
 <form method="post" novalidate>
                                    {% csrf_token %}
@@ -118,3 +123,4 @@ a {
 </div>
 
 {% endblock  %}
+
