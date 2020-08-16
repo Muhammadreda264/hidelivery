@@ -1,8 +1,9 @@
 {% extends "base.html" %}
-{% include "navbar.html" %}
 {% load widget_tweaks %}
 
 {% block content %}
+{% include "navbar.html" %}
+
 <div class="card">
 
   <!-- Card body -->
@@ -27,7 +28,7 @@
     </div>
   {% endfor %}
 
-  <button type="submit" class="btn btn-primary">طلبية جدية</button>
+  <button type="submit" class="btn btn-primary">طلبية جديدة</button>
 </form>
 
   </div>
@@ -35,5 +36,4 @@
 
 </div>
 {% endblock %}
-
 
