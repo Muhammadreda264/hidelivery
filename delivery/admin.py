@@ -4,11 +4,11 @@ from .views import printforstore
 from delivery.models import Order,Store,Driver
 @admin.register(Order)
 class NewOrderAdmin(admin.ModelAdmin):
-    change_form_template = 'printforstore.html'
     list_display=('adder','orderfee','driver','deliverfee','created_at','status')
     readonly_fields=['store','desc','orderfee','adder','customername','phone']
     list_filter = ['store','status','driver',
         ('created_at', DateRangeFilter),]
+
     actions = ['print_orders',]
 
 
