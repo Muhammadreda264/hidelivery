@@ -1,0 +1,41 @@
+<html dir="rtl" lang="ar" >
+
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="container" style="margin-top: 25px;">
+<h2>الطلبيات المكتملة</h2>
+
+  <div class="table-responsive">
+
+      <table class="table table-bordered ">
+  <thead>
+    <tr>
+        <th scope="col">اسم العميل</th>
+        <th scope="col">رسوم الطلب شامل التوصيل</th>
+        <th scope="col">تاريخ التوصيل</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr>
+      <td>{{ customername }}</td>
+    <td>{{deliverfee|add:orderfee}}</td>
+
+        <td>{{ delivered_at }}</td>
+
+
+    </tr>
+  </tbody>
+</table>
+
+
+
+    </div>
+        </div>
+
+
+
+</body>

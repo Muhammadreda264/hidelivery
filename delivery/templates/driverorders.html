@@ -39,14 +39,14 @@ th, td {
 
 {% block content %}
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">هاي دليفري </a>
+  <a class="navbar-brand" href="#">هاي ديليفري </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link" href="{% url 'home'  %}">الطلبيات النشطة<span class="sr-only">(current)</span></a>
-              <a class="nav-item nav-link" href="{% url 'drivercompletedorders' %}">الطلبيات المكتملة</a>
+      <a class="nav-item nav-link" href="{% url 'home'  %}">الطلبات النشطة<span class="sr-only">(current)</span></a>
+              <a class="nav-item nav-link" href="{% url 'drivercompletedorders' %}">الطلبات المكتملة</a>
       <a class="nav-item nav-link" href="{% url 'logout' %}">تسجيل الخروج</a>
     </div>
   </div>
@@ -95,14 +95,16 @@ th, td {
   </tr>
 
             <tr>
-    <th>حالة الطلبية:</th>
+    <th>حالة الطلب:</th>
     <td>{{order.get_status_display}}</td>
   </tr>
 </table>
 
 
 <a href="{% url 'updateorderstatus' order.id  %}">
-                <button type="button"  class="btn btn-outline-secondary">تحديث الحالة </button>
+                <button type="button"  class="btn btn-outline-secondary">
+
+                </button>
             </a>
     </div>
 
@@ -113,7 +115,7 @@ th, td {
 
     {% endfor %}
           {% else %}
-          ﻷ يوجد طلبيات في الوقت الحالي يمكنك تحديث الصفحة للمتابعة بعد قليل .
+          ﻷ يوجد طلبات نشطة في الوقت الحالي يمكنك تحديث الصفحة للمتابعة بعد قليل .
 {% endif %}
 
 

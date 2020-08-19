@@ -51,7 +51,7 @@ class Driver(models.Model):
 class Order(models.Model):
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
     driver = models.ForeignKey(Driver, on_delete=models.CASCADE, blank=True, null=True)
-    desc = models.TextField(default="", verbose_name="وصف الطلبية")
+    desc = models.TextField(default="", verbose_name="وصف الطلب")
     customername = models.CharField(max_length=300, default='', verbose_name="اسم العميل")
     deliverfee = models.IntegerField(default=0,verbose_name="مصاريف الشحن")
     orderfee = models.IntegerField(default=0, verbose_name="سعر الطلبية", help_text='اتركه فارغ لو كانت الطلبية مدفوعة')
@@ -85,5 +85,5 @@ class Order(models.Model):
         return f" {self.store}."
 
     class Meta:
-        verbose_name_plural = "طلبيات"
-        verbose_name = 'طلبية'
+        verbose_name_plural = "طلبات"
+        verbose_name = 'طلب'

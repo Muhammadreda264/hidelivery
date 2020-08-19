@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+
+<div class="container" style="margin-top: 25px;"id="printableArea">
+
+
+  <div class="table-responsive">
+
+      <table class="table table-bordered ">
+  <thead>
+    <tr>
+        <th scope="col">التاريخ</th>
+      <th scope="col">اسم العميل</th>
+      <th scope="col">المدفوع</th>
+      <th scope="col">مصاريف التوصيل</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for order in order_list %}
+    <tr>
+
+        <td>{{ order.created_at|date:"d-m-Y" }}</td>
+        <td>{{ order.customername }}</td>
+        <td>{{ order.deliverfee }}</td>
+        <td>{{ order.deliverfee|add:order.orderfee  }}</td>
+
+
+
+
+
+
+
+
+
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+
+
+    </div>
+        </div>
+<script>
+   function printDiv() {
+     var printContents = document.getElementById('printableArea').innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+printDiv();
+</script>
+
+
+{% endblock %}
+

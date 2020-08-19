@@ -1,7 +1,7 @@
 from django.urls import include, path
 
 from delivery import views
-from delivery.views import ViewPDF, OrderDetailView, DriverSignUpView, OrderListView, DriverOrderListView, \
+from delivery.views import  OrderDetailView, DriverSignUpView, OrderListView, DriverOrderListView, \
     CompeltedOrderListView, DriverCompeltedOrderListView
 
 urlpatterns = [
@@ -17,7 +17,7 @@ urlpatterns = [
     path('',views.home,name='home'),
     path('driver/home',DriverOrderListView.as_view(),name='driverhome'),
     path('updateorderstatus/<int:pk>/', views.updateOrderStatus, name='updateorderstatus'),
-    path('printorder/', ViewPDF.as_view(), name='printorder'),
+    path('printorder/', views.printforstore, name='printorder'),
 
 
 ]
