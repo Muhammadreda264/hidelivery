@@ -9,13 +9,11 @@ class NewOrderAdmin(admin.ModelAdmin):
     readonly_fields=['store','desc','orderfee','adder','customername','phone']
     list_filter = ['store','status','driver',
         ('created_at', DateRangeFilter),]
-    actions = ('print_orders',)
-
+    actions = ['print_orders',]
 
 
     def has_add_permission(self, request):
         return False
-
 
 
     def print_orders(self,request,queryset):
