@@ -145,7 +145,7 @@ def printforstore(request,queryset):
     total_orderfee=total_orderfee['orderfee__sum']
     total_deliverfee = queryset.aggregate(Sum('deliverfee'))
     deliverfee=total_deliverfee['deliverfee__sum']
-    total=int(total_orderfee)+int(total_deliverfee)
+    total=int(total_orderfee)+int(deliverfee)
     context = {'order_list': queryset,'total':total,'deliverfee':deliverfee ,'storename':''}
     return render(request, 'printforstore.html', context)
 
