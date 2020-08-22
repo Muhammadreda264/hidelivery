@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'l=+v^u%sa0_&=d#6d8d^3-b4ri6p7^h_+xm0qyy674mx+&^*#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['hideliveryapp.herokuapp.com',]
 
@@ -126,7 +126,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 AUTH_USER_MODEL = 'delivery.User'
