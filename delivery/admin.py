@@ -4,7 +4,7 @@ from .views import printforstore
 from delivery.models import Order,Store,Driver
 @admin.register(Order)
 class NewOrderAdmin(admin.ModelAdmin):
-    list_display=('adder','orderfee','driver','deliverfee','created_at','status')
+    list_display=('customername','adder','orderfee','driver','deliverfee','created_at','status')
     readonly_fields=['store','desc','orderfee','adder','customername','phone']
     list_filter = ['store','status','driver',
         ('created_at', DateRangeFilter),]
@@ -18,6 +18,8 @@ class NewOrderAdmin(admin.ModelAdmin):
 
     def print_orders(self,request,queryset):
         return printforstore(request,queryset)
+
+    print_orders.short_description = 'طباعة فواتير المتجر'
 
 
 class StoreAdmin(admin.ModelAdmin):

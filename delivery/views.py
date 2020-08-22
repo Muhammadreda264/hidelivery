@@ -1,5 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.urls import reverse
@@ -140,6 +141,8 @@ def updateOrderStatus(request, pk):
 
 
 def printforstore(request,queryset):
-    context = {'order_list': queryset}
-
+    total_orderfee = queryset.aggregate(Sum('orderfee'))
+    total_orderfee=total_orderfee['orderfee__sum']
+    context = {'order_list': queryset,'total':total_orderfee}
+    print(context)
     return render(request, 'printforstore.html', context)

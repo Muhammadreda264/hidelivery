@@ -24,19 +24,19 @@
 
         <td>{{ order.created_at|date:"d-m-Y" }}</td>
         <td>{{ order.customername }}</td>
-        <td>{{ order.deliverfee }}</td>
         <td>{{ order.deliverfee|add:order.orderfee  }}</td>
-
-
-
-
-
-
-
-
+        <td>{{ order.deliverfee }}</td>
 
     </tr>
   {% endfor %}
+      <tr>
+
+        <td></td>
+        <td></td>
+        <td>{{ total }}</td>
+        <td>{{ order.deliverfee }}</td>
+
+    </tr>
   </tbody>
 </table>
 
