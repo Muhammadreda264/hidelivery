@@ -144,5 +144,10 @@ def printforstore(request,queryset):
     total_orderfee = queryset.aggregate(Sum('orderfee'))
     total_orderfee=total_orderfee['orderfee__sum']
     context = {'order_list': queryset,'total':total_orderfee}
-    print(context)
     return render(request, 'printforstore.html', context)
+
+def printfordriver(request,queryset):
+    total_orderfee = queryset.aggregate(Sum('orderfee'))
+    total_orderfee=total_orderfee['orderfee__sum']
+    context = {'order_list': queryset,'total':total_orderfee}
+    return render(request, 'printfordriver.html', context)
