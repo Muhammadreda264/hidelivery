@@ -143,7 +143,10 @@ def updateOrderStatus(request, pk):
 def printforstore(request,queryset):
     total_orderfee = queryset.aggregate(Sum('orderfee'))
     total_orderfee=total_orderfee['orderfee__sum']
-    context = {'order_list': queryset,'total':total_orderfee}
+    total_deliverfee = queryset.aggregate(Sum('deliverfee'))
+
+    deliverfee=total_deliverfee['deliverfee__sum']
+    context = {'order_list': queryset,'total':total_orderfee,'deliverfee':deliverfee}
     return render(request, 'printforstore.html', context)
 
 def printfordriver(request,queryset):
