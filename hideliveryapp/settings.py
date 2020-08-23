@@ -23,8 +23,10 @@ SECRET_KEY = 'l=+v^u%sa0_&=d#6d8d^3-b4ri6p7^h_+xm0qyy674mx+&^*#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-if not DEBUG:
-    ALLOWED_HOSTS = ['hideliveryapp.herokuapp.com',]
+ALLOWED_HOSTS = ['hideliveryapp.herokuapp.com', ]
+
+if  DEBUG:
+    ALLOWED_HOSTS = []
 
 # Application definition
 
