@@ -15,25 +15,19 @@
   <thead>
     <tr>
       <th scope="col">اسم العميل</th>
-      <th scope="col">اسم السائق</th>
-        <th scope="col">رقم جوال السائق</th>
+              <th scope="col">وصف الطلب الطلب</th>
+
+      <th scope="col">سعر الطلب</th>
+        <th scope="col">مصاريف التوصيل</th>
     </tr>
   </thead>
   <tbody>
   {% for order in order_list %}
     <tr>
         <td>{{ order.customername }}</td>
-        {% if order.driver %}
-      <td>{{ order.driver.name }}</td>
-              <td>{{ order.driver.user.phone }}</td>
-
-  {% else %}
-    <td>لم يتم تعين سائق بعد</td>
-            <td>لم يتم تعين سائق بعد</td>
-
-  {% endif %}
-
-
+        <td>{{ order.desc }}</td>
+        <td>{{ order.orderfee }}</td>
+        <td>{{ order.deliverfee }}</td>
 
 
     </tr>

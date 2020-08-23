@@ -23,8 +23,8 @@ SECRET_KEY = 'l=+v^u%sa0_&=d#6d8d^3-b4ri6p7^h_+xm0qyy674mx+&^*#+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['hideliveryapp.herokuapp.com',]
+if not DEBUG:
+    ALLOWED_HOSTS = ['hideliveryapp.herokuapp.com',]
 
 # Application definition
 
@@ -81,8 +81,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-import dj_database_url
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+if not DEBUG :
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

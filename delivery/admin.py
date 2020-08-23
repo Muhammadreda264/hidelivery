@@ -4,7 +4,7 @@ from .views import printforstore, printfordriver
 from delivery.models import Order,Store,Driver
 @admin.register(Order)
 class NewOrderAdmin(admin.ModelAdmin):
-    list_display=('customername','adder','orderfee','driver','deliverfee','created_at','status')
+    list_display=('customername','adder','orderfee','driver','deliverfee','created_at','status','driverfee')
     readonly_fields=['store','desc','orderfee','adder','customername','phone']
     list_filter = ['store','status','driver',
         ('created_at', DateRangeFilter),]

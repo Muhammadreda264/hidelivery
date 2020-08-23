@@ -141,16 +141,23 @@ def updateOrderStatus(request, pk):
 
 
 def printforstore(request,queryset):
+    storename=queryset.first().driver.name
     total_orderfee = queryset.aggregate(Sum('orderfee'))
     total_orderfee=total_orderfee['orderfee__sum']
     total_deliverfee = queryset.aggregate(Sum('deliverfee'))
     deliverfee=total_deliverfee['deliverfee__sum']
     total=int(total_orderfee)+int(deliverfee)
-    context = {'order_list': queryset,'total':total,'deliverfee':deliverfee ,'storename':''}
+    context = {'order_list': queryset,'total':total,'deliverfee':deliverfee ,'storename':'storename'}
     return render(request, 'printforstore.html', context)
 
 def printfordriver(request,queryset):
+    drivername=queryset.first().driver.name
     total_orderfee = queryset.aggregate(Sum('orderfee'))
     total_orderfee=total_orderfee['orderfee__sum']
-    context = {'order_list': queryset,'total':total_orderfee}
+    total_deliverfee = queryset.aggregate(Sum('deliverfee'))
+    deliverfee = total_deliverfee['deliverfee__sum']
+    total = int(total_orderfee) + int(deliverfee)
+    driverfee=queryset.aggregate(Sum('driverfee'))
+    driverfee=driverfee['driverfee__sum']
+    context = {'order_list': queryset,'total':total,'driverfee':driverfee,'drivername':drivername}
     return render(request, 'printdriver.html', context)

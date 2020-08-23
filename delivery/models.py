@@ -55,6 +55,7 @@ class Order(models.Model):
     customername = models.CharField(max_length=300, default='', verbose_name="اسم العميل")
     deliverfee = models.IntegerField(default=0,verbose_name="مصاريف الشحن")
     orderfee = models.IntegerField(default=0, verbose_name="سعر الطلبية", help_text='اتركه فارغ لو كانت الطلبية مدفوعة')
+    driverfee=models.IntegerField(default=20,verbose_name="حساب السائق")
     created_at = models.DateTimeField(auto_now_add=True, blank=True)
     phone = models.CharField(max_length=30, verbose_name="رقم جوال العميل")
     adder = models.CharField(max_length=1000, default='', verbose_name="عنوان العميل ")

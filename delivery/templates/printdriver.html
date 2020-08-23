@@ -3,8 +3,8 @@
 
 {% block content %}
 
-
-<div class="container" style="margin-top: 25px;"id="printableArea">
+<div class="container" style="margin-top: 60px;"id="printableArea">
+<h2>drivername</h2>
 
 
   <div class="table-responsive">
@@ -25,7 +25,7 @@
         <td>{{ order.created_at|date:"d-m-Y" }}</td>
         <td>{{ order.customername }}</td>
         <td>{{ order.deliverfee|add:order.orderfee  }}</td>
-        <td>{{ 20 }}</td>
+        <td>{{ order.driverfee }}</td>
 
     </tr>
   {% endfor %}
@@ -34,6 +34,8 @@
         <td></td>
         <td></td>
         <td>{{ total }}</td>
+        <td>{{ driverfee }}</td>
+
 
     </tr>
   </tbody>
