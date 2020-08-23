@@ -141,7 +141,7 @@ def updateOrderStatus(request, pk):
 
 
 def printforstore(request,queryset):
-    storename=queryset.first().driver.name
+    storename=queryset.first().store.name
     total_orderfee = queryset.aggregate(Sum('orderfee'))
     total_orderfee=total_orderfee['orderfee__sum']
     total_deliverfee = queryset.aggregate(Sum('deliverfee'))
