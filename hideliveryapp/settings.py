@@ -25,8 +25,6 @@ SECRET_KEY = 'l=+v^u%sa0_&=d#6d8d^3-b4ri6p7^h_+xm0qyy674mx+&^*#+'
 DEBUG = True
 ALLOWED_HOSTS = ['hideliveryapp.herokuapp.com', ]
 
-if  DEBUG:
-    ALLOWED_HOSTS = []
 
 # Application definition
 
